@@ -1,0 +1,33 @@
+{
+  "name": "nodebird",
+  "version": "0.0.1",
+  "description": "SNS service",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Holy-h/learn-nodebird.git"
+  },
+  "author": "bonggt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Holy-h/learn-nodebird/issues"
+  },
+  "homepage": "https://github.com/Holy-h/learn-nodebird#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
+    "pug": "^2.0.3",
+    "sequelize": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
