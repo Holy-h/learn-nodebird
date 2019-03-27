@@ -7,7 +7,7 @@ router.get("/profile", isLoggedIn, (req, res) => {
   res.render("profile", { title: "Profile - NodeBird", user: req.user });
 });
 
-router.get("/join", (req, isNotLoggedIn, res) => {
+router.get("/join", isNotLoggedIn, (req, res) => {
   res.render("join", {
     title: "Join - NodeBird",
     user: req.user,

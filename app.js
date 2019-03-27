@@ -43,6 +43,7 @@ app.use(flash());
 app.use(passport.initialize());
 // req.session 객체에 passport 정보 저장
 // req.session 객체는 express-session에서 생성하므로 위치 신경써야함
+// passport.deserializeUser 메서드 호출
 app.use(passport.session());
 
 app.use("/", pageRouter);

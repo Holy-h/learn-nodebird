@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
-const { User } = require("../models/index");
+const { User } = require("../models");
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.post("/join", isNotLoggedIn, async (req, res, next) => {
       req.flash("joinError", "이미 가입된 이메일입니다");
       return res.redirect("/join");
     }
-    const hash = await bcrypt.hash("password", 12);
+    const hash = await bcrypt.hash(password, 12);
     await User.create({
       email,
       nick,
