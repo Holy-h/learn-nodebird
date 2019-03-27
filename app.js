@@ -4,15 +4,19 @@ const morgan = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
 require("dotenv").config();
 
 const pageRouter = require("./routes/page");
 // 모델 <-> 서버 연결
 const { sequelize } = require("./models");
+// passport 연결
+const passportConfig = require("./passport");
 
 const app = express();
 // 모델 <-> 서버 연결
 sequelize.sync();
+passportConfig(passport);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -35,6 +39,11 @@ app.use(
   })
 );
 app.use(flash());
+// req 객체에 passport 설정 탑승
+app.use(passport.initialize());
+// req.session 객체에 passport 정보 저장
+// req.session 객체는 express-session에서 생성하므로 위치 신경써야함
+app.use(passport.session());
 
 app.use("/", pageRouter);
 
