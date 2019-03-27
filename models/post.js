@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) =>
   sequelize.define(
     "post",
     {
@@ -16,4 +16,3 @@ module.exports = (sequelize, DataTypes) => {
       paranoid: true
     }
   );
-};

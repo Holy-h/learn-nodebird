@@ -7,8 +7,12 @@ const flash = require("connect-flash");
 require("dotenv").config();
 
 const pageRouter = require("./routes/page");
+// 모델 <-> 서버 연결
+const { sequelize } = require("./models");
 
 const app = express();
+// 모델 <-> 서버 연결
+sequelize.sync();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");

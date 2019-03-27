@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) =>
   sequelize.define(
     "hashtag",
     {
@@ -13,4 +13,3 @@ module.exports = (sequelize, DataTypes) => {
       paranoid: true
     }
   );
-};
