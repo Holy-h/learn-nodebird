@@ -8,6 +8,7 @@ const passport = require("passport");
 require("dotenv").config();
 
 const pageRouter = require("./routes/page");
+const authRouter = require("./routes/auth");
 // 모델 <-> 서버 연결
 const { sequelize } = require("./models");
 // passport 연결
@@ -47,6 +48,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", pageRouter);
+app.use("/auth", authRouter);
 
 app.use((req, res, next) => {
   const err = new Error("not Found");
