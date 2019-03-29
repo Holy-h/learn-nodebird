@@ -11,7 +11,7 @@ module.exports = passport => {
   // req.session 객체로 부터 받은 id를 이용해 사용자 정보를 조회하여 req.user 객체에 저장
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await User.find({ where: { id } });
+      const user = await User.findOne({ where: { id } });
       return done(null, user);
     } catch (error) {
       return done(error);
