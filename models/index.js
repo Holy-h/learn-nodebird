@@ -32,5 +32,6 @@ db.User.belongsToMany(db.User, {
 });
 
 console.log(db.User);
+console.log(db);
 
 module.exports = db;

@@ -9,13 +9,10 @@ require("dotenv").config();
 
 const pageRouter = require("./routes/page");
 const authRouter = require("./routes/auth");
-// 모델 <-> 서버 연결
 const { sequelize } = require("./models");
-// passport 연결
 const passportConfig = require("./passport");
 
 const app = express();
-// 모델 <-> 서버 연결
 sequelize.sync();
 passportConfig(passport);
 
@@ -40,23 +37,19 @@ app.use(
   })
 );
 app.use(flash());
-// req 객체에 passport 설정 탑승
 app.use(passport.initialize());
-// req.session 객체에 passport 정보 저장
-// req.session 객체는 express-session에서 생성하므로 위치 신경써야함
-// passport.deserializeUser 메서드 호출
 app.use(passport.session());
 
 app.use("/", pageRouter);
 app.use("/auth", authRouter);
 
 app.use((req, res, next) => {
-  const err = new Error("not Found");
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
-app.use((err, res, next) => {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
   res.status(err.status || 500);
@@ -64,5 +57,5 @@ app.use((err, res, next) => {
 });
 
 app.listen(app.get("port"), () => {
-  console.log(app.get("port"), "번 포트에서 대기 중");
+  console.log(app.get("port"), "번 포트에서 대기중");
 });

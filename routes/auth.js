@@ -9,10 +9,9 @@ const router = express.Router();
 router.post("/join", isNotLoggedIn, async (req, res, next) => {
   const { email, nick, password } = req.body;
   try {
-    console.log(User);
     const exUser = await User.find({ where: { email } });
     if (exUser) {
-      req.flash("joinError", "이미 가입된 이메일입니다");
+      req.flash("joinError", "이미 가입된 이메일입니다.");
       return res.redirect("/join");
     }
     const hash = await bcrypt.hash(password, 12);
@@ -35,7 +34,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
       return next(authError);
     }
     if (!user) {
-      req.flash("login Error", info.message);
+      req.flash("loginError", info.message);
       return res.redirect("/");
     }
     return req.login(user, loginError => {
@@ -45,7 +44,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
       }
       return res.redirect("/");
     });
-  })(req, res, next);
+  })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
 
 router.get("/logout", isLoggedIn, (req, res) => {
