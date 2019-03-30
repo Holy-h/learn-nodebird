@@ -4,6 +4,7 @@ block content
   .timeline
     .followings.half
       h2 팔로잉 목록
+      -console.log(user.Followings)
       if user.Followings
         for following in user.Followings
           div= following.nick
