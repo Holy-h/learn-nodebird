@@ -43,7 +43,6 @@ router.post("/img", isLoggedIn, upload.single("img"), (req, res) => {
 
 const upload2 = multer();
 router.post("/", isLoggedIn, upload2.none(), async (req, res, next) => {
-  console.log("upload2 시작");
   try {
     const post = await Post.create({
       content: req.body.content,
@@ -69,8 +68,8 @@ router.post("/", isLoggedIn, upload2.none(), async (req, res, next) => {
 });
 
 router.get("/hashtag", async (req, res, next) => {
-  // req.body에 들어있는 hashtag를 query로 사용
-  const query = req.body.hashtag;
+  // req.query에 들어있는 hashtag를 query로 사용
+  const query = req.query.hashtag;
   if (!query) {
     // 없네? -> home으로 돌아가
     return res.redirect("/");
